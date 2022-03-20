@@ -14,10 +14,13 @@ var zigzagLevelOrder = function (root) {
   if (!root) {
     return [];
   }
+  if (!root.left && !root.right) {
+    return [[root.val]];
+  }
 
   let queue = [root];
   let res = [];
-  let level = 0;
+  let flag = false;
 
   while (queue.length > 0) {
     const arr = [];
@@ -33,8 +36,8 @@ var zigzagLevelOrder = function (root) {
     }
 
     queue = nextQueue;
-    res.push(level % 2 == 1 ? arr.reverse() : arr);
-    level++;
+    res.push(flag ? arr.reverse() : arr);
+    flag = !flag;
   }
 
   return res;
