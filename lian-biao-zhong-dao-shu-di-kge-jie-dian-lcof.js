@@ -12,15 +12,10 @@
  */
 var getKthFromEnd = function (head, k) {
   var fast = head, slow = head;
-  var i = 0;
 
-  while (i < k && fast) {
+  while (k > 0) {
     fast = fast.next;
-    i++;
-  }
-
-  if (i !== k) {
-    return null;
+    k--;
   }
 
   while (fast !== null) {

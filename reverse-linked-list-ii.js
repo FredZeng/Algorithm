@@ -12,7 +12,7 @@
  * @return {ListNode}
  */
 var reverseBetween = function (head, left, right) {
-  if (!head || !head.next) {
+  if (!head || !head.next || left === right) {
     return head;
   }
 
