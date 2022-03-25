@@ -3,33 +3,24 @@
  * @return {string[]}
  */
 var generateParenthesis = function (n) {
-  var res = [];
+  if (n == 1) return ['()'];
+  if (n == 2) return ['()()', '(())'];
 
-  var backtrace = function (left, right, stack) {
-    if (left > right) {
-      return;
-    }
+  let result = [];
+
+  let backtrace = function (left, right, stack) {
+    if (left > right) return;
     if (left == 0) {
-      res.push(stack.join('') + new Array(right).fill(')').join(''));
+      result.push(stack + new Array(right).fill(')').join(''));
       return;
     }
 
-    if (left == right) {
-      stack.push('(');
-      backtrace(left - 1, right, stack);
-      stack.pop();
-    } else if (right > left) {
-      stack.push('(');
-      backtrace(left - 1, right, stack);
-      stack.pop();
+    backtrace(left - 1, right, stack + '(');
 
-      stack.push(')');
-      backtrace(left, right - 1, stack);
-      stack.pop();
-    }
+    backtrace(left, right - 1, stack + ')');
   };
 
-  backtrace(n, n, []);
+  backtrace(n, n, '');
 
-  return res;
+  return result;
 };
