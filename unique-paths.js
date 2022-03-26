@@ -4,6 +4,8 @@
  * @return {number}
  */
 var uniquePaths = function (m, n) {
+  if (m == 1 || n == 1) return 1;
+
   let arr = new Array(m);
   for (let i = 0; i < m; i++) {
     arr[i] = new Array(n);
