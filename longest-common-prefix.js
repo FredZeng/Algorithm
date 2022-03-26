@@ -7,20 +7,23 @@ var longestCommonPrefix = function (strs) {
     return strs[0];
   }
 
-  var maxLen = Math.min.apply(null, strs.map(it => it.length));
+  let res = "";
+  let i = 0;
 
-  if (maxLen == 0) {
-    return '';
-  }
+  while (true) {
+    let char = strs[0][i];
 
-  for (var i = 0; i < maxLen; i++) {
-    var str = strs[0][i];
-    for (var j = 1; j < strs.length; j++) {
-      if (strs[j][i] !== str) {
-        return strs[0].slice(0, i);
+    if (char === undefined) break;
+
+    for (let j = 1; j < strs.length; j++) {
+      if (strs[j][i] !== char) {
+        return res;
       }
     }
+
+    res += char;
+    i++;
   }
 
-  return strs[0].slice(0, maxLen);
+  return res;
 };
