@@ -38,3 +38,35 @@ var combinationSum2 = function (candidates, target) {
 
   return result;
 };
+
+// var combinationSum2 = function (candidates, target) {
+//   if (candidates.length == 1) {
+//     return candidates[0] == target ? [candidates] : [];
+//   }
+
+//   candidates.sort((a, b) => a - b);
+//   let res = [];
+
+//   let backtrace = function (start, stack, target) {
+//     if (target == 0) {
+//       res.push([...stack]);
+//       return;
+//     } else if (target < 0) {
+//       return;
+//     }
+
+//     for (let i = start; i < candidates.length; i++) {
+//       if (i > start && candidates[i] == candidates[i - 1]) {
+//         continue;
+//       }
+
+//       stack.push(candidates[i]);
+//       backtrace(i + 1, stack, target - candidates[i]);
+//       stack.pop();
+//     }
+//   };
+
+//   backtrace(0, [], target);
+
+//   return res;
+// };
