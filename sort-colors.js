@@ -5,29 +5,21 @@
 var sortColors = function (nums) {
     if (nums.length == 1) return;
 
-    let num0 = 0, num1 = 0;
+    let i = 0, j = nums.length - 1, k = 0;
 
-    for (let i = 0, len = nums.length; i < len; i++) {
-        if (nums[i] == 0) {
-            num0++;
-        } else if (nums[i] == 1) {
-            num1++;
-        }
-    }
-
-    if (num0 == nums.length || num1 == nums.length || (num0 == 0 && num1 == 0)) {
-        return;
-    }
-
-    for (let i = 0, len = nums.length; i < len; i++) {
-        if (num0) {
-            nums[i] = 0;
-            num0--;
-        } else if (num1) {
-            nums[i] = 1;
-            num1--;
-        } else {
-            nums[i] = 2;
+    while (k <= j) {
+        switch (nums[k]) {
+            case 0:
+                nums[k++] = nums[i];
+                nums[i++] = 0;
+                break;
+            case 1:
+                k++;
+                break;
+            case 2:
+                nums[k] = nums[j];
+                nums[j--] = 2;
+                break;
         }
     }
 };
